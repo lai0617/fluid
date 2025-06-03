@@ -30,6 +30,17 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 )
 
+// newAlluxioEngineRT initializes and returns a new instance of AlluxioEngine.
+// 
+// Parameters:
+// - client: A Kubernetes client used to interact with the cluster.
+// - name: The name of the Alluxio runtime resource.
+// - namespace: The namespace where the runtime resource resides.
+// - withRuntimeInfo: If true, the function will initialize the runtimeInfo field.
+// - unittest: If true, sets the UnitTest flag to enable testing-specific behavior.
+//
+// Returns:
+// - A pointer to an initialized AlluxioEngine struct with optionally set runtimeInfo.
 func newAlluxioEngineRT(client client.Client, name string, namespace string, withRuntimeInfo bool, unittest bool) *AlluxioEngine {
 	runTimeInfo, _ := base.BuildRuntimeInfo(name, namespace, common.AlluxioRuntime)
 	engine := &AlluxioEngine{
